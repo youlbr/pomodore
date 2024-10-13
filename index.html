@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#d5f5e3">
+    <link rel="stylesheet" href="style.css">
+  
+    <title>Pomodore</title>
+</head>
+<body>
+   
+    <audio  id="audioPlayer"  preload >
+        <source src="./asset/clock.wav" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+    <audio  id="audioPlayer1" preload  >
+        <source src="./asset/descanso.mp3" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+    <audio  id="audioPlayer2" preload  >
+        <source src="./asset/sound.wav" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+    
+    <section class="content">
+        <section class="content-dasboard">
+            <article class="content-audio">
+                <div class="circle">
+                    <img src="./asset/bocina.svg" alt="">
+                    <img class="muted" src="./asset/volumen.svg" alt="">
+                </div>
+            </article>
+            <article class="what">
+                <h1 class="what-h1"></h1>
+            </article>
+            <article class="content-clock">
+                <p class="clock"> <span class="minutes">25</span>:<span class="secuns">00</span></p>
+            </article>
+            <article class="content-botons">
+                <button class="start"> start</button>
+                <button class="restar"> restar</button>
+
+            </article>
+        </section>
+
+        <section class="content-phrases">
+            <p class="phrase"> " No es que tengamos poco tiempo, sino que perdemos mucho."</p>
+            <p class="author"> - <span> Seneca ,filosofo romano</span> </p>
+        </section>
+    </section>
+    <script src="./app.js"></script>
+    
+</body>
+</html>
