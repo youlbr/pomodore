@@ -15,16 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const img = document.querySelector(".muted");
 
   function playAudio() {
-    // audio.currentTime = 0; // Reiniciar el audio al inicio
     audio.play();
-
-    // Detener la reproducción en 19 segundos
     audio.ontimeupdate = () => {
       if (audio.currentTime >= 17.5) {
-        console.log("hola");
-        // audio.pause(); // Detener la reproducción
-        audio.currentTime = 1.67; // Reiniciar el tiempo
-        audio.ontimeupdate = null; // Limpiar el evento para evitar bucles
+        audio.currentTime = 1.67;
+        audio.ontimeupdate = null;
       }
     };
   }
@@ -44,13 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "William Penn",
     },
     {
-      frace:
-        "No es suficiente tener un buen cerebro. Lo principal es usarlo bien.",
+      frace: "No es suficiente tener un buen cerebro. Lo principal es usarlo bien.",
       author: "Rene Descartes",
     },
     {
-      frace:
-        "El sacrificio es el precio que pagas por la oportunidad de alcanzar tus sueños.",
+      frace: "El sacrificio es el precio que pagas por la oportunidad de alcanzar tus sueños.",
       author: "Michelle Obama",
     },
     {
@@ -58,13 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "Beverly Sills",
     },
     {
-      frace:
-        "El tiempo es un recurso no renovable. Cada momento que pasas en algo que no es significativo es un momento perdido.",
+      frace: "El tiempo es un recurso no renovable. Cada momento que pasas en algo que no es significativo es un momento perdido.",
       author: "Randy Pausch",
     },
     {
-      frace:
-        "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+      frace: "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
       author: "Robert Collier",
     },
     {
@@ -76,29 +67,26 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "Marthe Troly-Curtin",
     },
     {
-      frace:
-        "No se trata de cuántas horas trabajas, sino de qué haces con esas horas.",
+      frace: "No se trata de cuántas horas trabajas, sino de qué haces con esas horas.",
       author: "Anonymous",
     },
     {
-      frace:
-        "La perseverancia es la clave del éxito. Es la diferencia entre los que renuncian y los que triunfan.",
+      frace: "La perseverancia es la clave del éxito. Es la diferencia entre los que renuncian y los que triunfan.",
       author: "Anonymous",
     },
   ];
+  
   let randon = Math.floor(Math.random() * frases.length);
-
   frase.textContent = frases[randon].frace;
   author.textContent = frases[randon].author;
   let tiempoRestante = 60 * 60;
-  let intervalo; // Declaramos el intervalo fuera de las funciones
-  let isRunning = false; // Estado del temporizador (activo o pausado)
+  let intervalo;
+  let isRunning = false;
   let focus = false;
   let rest = true;
   let isMuted = false;
   let isRestAudioPlaying = false; 
 
-  // Actualizar la pantalla
   function actualizarPantalla() {
     let minutos = Math.floor(tiempoRestante / 60);
     let segundos = tiempoRestante % 60;
@@ -106,16 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
     secuns.textContent = `${segundos < 10 ? "0" : ""}${segundos}`;
   }
 
-  // Iniciar o pausar el temporizador
   function begin() {
     if (isRunning) {
       clearInterval(intervalo);
       audio.pause();
-      start.textContent = "Start"; // Cambiar el texto a "Start"
+      start.textContent = "Start";
       what.textContent = "Paused";
       isRestAudioPlaying = false;
     } else {
-      // Si está pausado, reiniciar el temporizador
       intervalo = setInterval(() => {
         if (tiempoRestante % 240 === 0 && tiempoRestante > 0) {
           let randon = Math.floor(Math.random() * frases.length);
@@ -128,20 +114,19 @@ document.addEventListener("DOMContentLoaded", function () {
           what.textContent = "Focus";
           metaThemeColor.setAttribute("content", "#82e0aa");
           dasboar.style.backgroundColor = "#82e0aa";
-          isRestAudioPlaying=false
+          isRestAudioPlaying = false;
         } else {
           pauseAudio();
-          if (!isRestAudioPlaying) { // Solo reproducir si no está sonando
+          if (!isRestAudioPlaying) {
             restAudio.play();
-            sound.play()
-            isRestAudioPlaying = true; // Marcar como sonando
-           
+            sound.play();
+            isRestAudioPlaying = true;
           }
           what.textContent = "Relax";
           metaThemeColor.setAttribute("content", "#ffa07a");
           dasboar.style.backgroundColor = "#FFA07A";
         }
-        start.textContent = "Pause"; // Cambiar el texto a "Pause"
+        start.textContent = "Pause";
 
         if (tiempoRestante > 0) {
           tiempoRestante--;
@@ -160,11 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }, 1000);
     }
-    isRunning = !isRunning; // Cambiar el estado (activo/pausado)
-    console.log(isRunning);
+    isRunning = !isRunning;
   }
 
-  // Restablecer el temporizador
   function resetTimer() {
     pauseAudio();
     mute.removeEventListener("click", muted);
@@ -177,15 +160,16 @@ document.addEventListener("DOMContentLoaded", function () {
     reset.style.cursor = `url('./asset/cursor.svg'),auto`;
     mute.style.opacity = 0.1;
     reset.style.opacity = 0.1;
-    clearInterval(intervalo); // Detener el temporizador
-    tiempoRestante = 60 * 60; // Restablecer a 2 minutos
-    actualizarPantalla(); // Actualizar la pantalla con el tiempo inicial
+    clearInterval(intervalo);
+    tiempoRestante = 60 * 60;
+    actualizarPantalla();
     what.textContent = "";
-    start.textContent = "Start"; // Cambiar el texto a "Start"
+    start.textContent = "Start";
     metaThemeColor.setAttribute("content", "#f0f3f4");
     dasboar.style.backgroundColor = "#f0f3f4";
-    isRunning = false; // Establecer el estado como no corriendo
+    isRunning = false;
   }
+
   function muted() {
     if (isMuted) {
       audio.volume = 1;
@@ -197,9 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
     isMuted = !isMuted;
   }
 
-  // Registrar los eventos de clic
   start.addEventListener("click", begin);
-
-  // Inicializar la pantalla
   actualizarPantalla();
 });
