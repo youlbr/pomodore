@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const author = document.querySelector(".author");
   const audio = document.getElementById("audioPlayer");
   const sound = document.getElementById("audioPlayer2");
+  const sound2 = document.getElementById("audioPlayer3");
+  const sound3 = document.getElementById("audioPlayer4");
   const restAudio = document.getElementById("audioPlayer1");
   const mute = document.querySelector(".circle");
   const img = document.querySelector(".muted");
@@ -39,11 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "William Penn",
     },
     {
-      frace: "No es suficiente tener un buen cerebro. Lo principal es usarlo bien.",
+      frace:
+        "No es suficiente tener un buen cerebro. Lo principal es usarlo bien.",
       author: "Rene Descartes",
     },
     {
-      frace: "El sacrificio es el precio que pagas por la oportunidad de alcanzar tus sueños.",
+      frace:
+        "El sacrificio es el precio que pagas por la oportunidad de alcanzar tus sueños.",
       author: "Michelle Obama",
     },
     {
@@ -51,11 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "Beverly Sills",
     },
     {
-      frace: "El tiempo es un recurso no renovable. Cada momento que pasas en algo que no es significativo es un momento perdido.",
+      frace:
+        "El tiempo es un recurso no renovable. Cada momento que pasas en algo que no es significativo es un momento perdido.",
       author: "Randy Pausch",
     },
     {
-      frace: "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+      frace:
+        "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
       author: "Robert Collier",
     },
     {
@@ -67,15 +73,17 @@ document.addEventListener("DOMContentLoaded", function () {
       author: "Marthe Troly-Curtin",
     },
     {
-      frace: "No se trata de cuántas horas trabajas, sino de qué haces con esas horas.",
+      frace:
+        "No se trata de cuántas horas trabajas, sino de qué haces con esas horas.",
       author: "Anonymous",
     },
     {
-      frace: "La perseverancia es la clave del éxito. Es la diferencia entre los que renuncian y los que triunfan.",
+      frace:
+        "La perseverancia es la clave del éxito. Es la diferencia entre los que renuncian y los que triunfan.",
       author: "Anonymous",
     },
   ];
-  
+
   let randon = Math.floor(Math.random() * frases.length);
   frase.textContent = frases[randon].frace;
   author.textContent = frases[randon].author;
@@ -85,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let focus = false;
   let rest = true;
   let isMuted = false;
-  let isRestAudioPlaying = false; 
+  let isRestAudioPlaying = false;
 
   function actualizarPantalla() {
     let minutos = Math.floor(tiempoRestante / 60);
@@ -100,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
       audio.pause();
       start.textContent = "Start";
       what.textContent = "Paused";
+      what.style.color = "";
       isRestAudioPlaying = false;
     } else {
       intervalo = setInterval(() => {
@@ -112,8 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (rest) {
           playAudio();
           what.textContent = "Focus";
-          metaThemeColor.setAttribute("content", "#82e0aa");
-          dasboar.style.backgroundColor = "#82e0aa";
+          what.style.color = "#82cf1f";
+          metaThemeColor.setAttribute("content", "#82cf1f");
+          dasboar.style.color = "#82cf1f";
           isRestAudioPlaying = false;
         } else {
           pauseAudio();
@@ -122,9 +132,21 @@ document.addEventListener("DOMContentLoaded", function () {
             sound.play();
             isRestAudioPlaying = true;
           }
+          console.log(tiempoRestante);
+          if (tiempoRestante < 32) {
+            sound2.play();
+            sound3.play();
+            if (tiempoRestante < 32 - 19) {
+              sound2.pause();
+              sound2.currentTime=0
+              sound3.pause();
+              sound3.currentTime=0
+            }
+          }
           what.textContent = "Relax";
-          metaThemeColor.setAttribute("content", "#ffa07a");
-          dasboar.style.backgroundColor = "#FFA07A";
+          metaThemeColor.setAttribute("content", "#f380e6");
+          what.style.color = "#f380e6";
+          dasboar.style.color = "#f380e6";
         }
         start.textContent = "Pause";
 
@@ -139,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
           reset.addEventListener("click", resetTimer);
         } else {
           if (focus) tiempoRestante = 60 * 60;
-          if (rest) tiempoRestante = 10 * 60;
+          if (rest) tiempoRestante = 60 * 60;
           focus = !focus;
           rest = !rest;
         }
@@ -163,10 +185,12 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(intervalo);
     tiempoRestante = 60 * 60;
     actualizarPantalla();
-    what.textContent = "";
+    what.textContent = "Welcome";
+    what.style.color = "#fff";
+
     start.textContent = "Start";
-    metaThemeColor.setAttribute("content", "#f0f3f4");
-    dasboar.style.backgroundColor = "#f0f3f4";
+    metaThemeColor.setAttribute("content", "#000");
+    dasboar.style.backgroundColor = "#000";
     isRunning = false;
   }
 
