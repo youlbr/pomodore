@@ -187,7 +187,8 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarPantalla();
     what.textContent = "Welcome";
     what.style.color = "#fff";
-
+minutes.style.color='#fff'
+secuns.style.color='#fff'
     start.textContent = "Start";
     metaThemeColor.setAttribute("content", "#000");
     dasboar.style.backgroundColor = "#000";
