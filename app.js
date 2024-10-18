@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
           reset.addEventListener("click", resetTimer);
         } else {
           if (focus) tiempoRestante = 60 * 60;
-          if (rest) tiempoRestante = 60 * 60;
+          if (rest) tiempoRestante = 10 * 60;
           focus = !focus;
           rest = !rest;
         }
